@@ -16,4 +16,4 @@ class ToDo(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True, editable=False)
     user_master = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
