@@ -3,6 +3,7 @@ from django.db import models
 
 class User(models.Model):
     name = models.CharField(max_length=64)
+    birthday_year = models.PositiveIntegerField(default=1990)
 
 
 class ProjectToDo(models.Model):
