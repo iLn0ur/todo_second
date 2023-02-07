@@ -15,13 +15,14 @@ class ProjectModelViewSet(ModelViewSet):
     serializer_class = ProjectModelSerializer
 
 
-class ToDoModelViewSet(ModelViewSet):
+class ToDoModelViewSet(ModelViewSet):1
+
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 10
+    default_limit = 3
 
 
 class ProjectLimitOffsetPaginatorViewSet(ModelViewSet):
