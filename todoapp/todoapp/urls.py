@@ -21,7 +21,7 @@ from mainapp.views import *
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
-router.register('projects', ProjectLimitOffsetPaginatorViewSet)
+router.register('projects', ProjectModelViewSet)
 router.register('todolist', TodoCustomDjangoFilterViewSet)
 
 urlpatterns = [

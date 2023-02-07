@@ -15,7 +15,7 @@ class ProjectModelViewSet(ModelViewSet):
     serializer_class = ProjectModelSerializer
 
 
-class ToDoModelViewSet(ModelViewSet):1
+class ToDoModelViewSet(ModelViewSet):
 
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
