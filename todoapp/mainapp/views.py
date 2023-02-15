@@ -7,7 +7,7 @@ from .filters import TodoFilter
 
 
 class UserModelViewSet(ModelViewSet):
-    queryset = User.objects.all()
+    queryset = UserApp.objects.all()
     serializer_class = UserModelSerializer
 
 
