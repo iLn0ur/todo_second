@@ -4,6 +4,8 @@ from django.db import models
 class UserApp(models.Model):
     name = models.CharField(max_length=64)
     birthday_year = models.PositiveIntegerField(default=1990)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
