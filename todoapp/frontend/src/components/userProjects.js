@@ -10,7 +10,7 @@ const ProjectItem = ({project}) => {
                     {project.name}
                 </td>
                 <td>
-                    {project.user_access.join(` -- `)}
+                    {project.user_access.join("\n")}
                 </td>
             </tr>
         </tbody>
