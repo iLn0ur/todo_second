@@ -1,14 +1,20 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import permissions
+from rest_framework import permissions, generics
 from rest_framework.pagination import LimitOffsetPagination
 from .models import *
 from .serializers import *
 from .filters import TodoFilter
 
 
-class UserModelViewSet(ModelViewSet):
-    queryset = User.objects.all()
+class UserModelViewSet(ModelViewSet):  # generics.ListAPIView для версионирования API
+    queryset = UserApp.objects.all()
     serializer_class = UserModelSerializer
+
+    # def get_serializer_class(self):
+    #     print(self.request.version)
+    #     if self.request.version == '2':
+    #         return UserSerializerWithFullName
+    #     return UserModelSerializer
 
 
 class ProjectModelViewSet(ModelViewSet):
