@@ -6,15 +6,15 @@ from .serializers import *
 from .filters import TodoFilter
 
 
-class UserModelViewSet(generics.ListAPIView):
+class UserModelViewSet(ModelViewSet):  # generics.ListAPIView для версионирования API
     queryset = UserApp.objects.all()
     serializer_class = UserModelSerializer
 
-    def get_serializer_class(self):
-        print(self.request.version)
-        if self.request.version == '2':
-            return UserSerializerWithFullName
-        return UserModelSerializer
+    # def get_serializer_class(self):
+    #     print(self.request.version)
+    #     if self.request.version == '2':
+    #         return UserSerializerWithFullName
+    #     return UserModelSerializer
 
 
 class ProjectModelViewSet(ModelViewSet):

@@ -2,17 +2,17 @@ from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializ
 from .models import UserApp, ProjectToDo, ToDo
 
 
-class UserModelSerializer(ModelSerializer):
+class UserModelSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = UserApp
         fields = '__all__'
         ordering = ['id']
 
 
-class UserSerializerWithFullName(ModelSerializer):
-    class Meta:
-        model = UserApp
-        fields = ('name', 'birthday_year')
+# class UserSerializerWithFullName(ModelSerializer):
+#     class Meta:
+#         model = UserApp
+#         fields = ('name', 'birthday_year')
 
 
 class ProjectModelSerializer(HyperlinkedModelSerializer):
