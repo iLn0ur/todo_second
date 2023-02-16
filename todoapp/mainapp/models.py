@@ -1,9 +1,11 @@
 from django.db import models
 
 
-class User(models.Model):
+class UserApp(models.Model):
     name = models.CharField(max_length=64)
     birthday_year = models.PositiveIntegerField(default=1990)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -11,7 +13,7 @@ class User(models.Model):
 
 class ProjectToDo(models.Model):
     name = models.CharField(max_length=64)
-    user_access = models.ManyToManyField(User)
+    user_access = models.ManyToManyField(UserApp)
 
 
 class ToDo(models.Model):
@@ -19,5 +21,5 @@ class ToDo(models.Model):
     text = models.TextField()
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True, editable=False)
-    user_master = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_master = models.ForeignKey(UserApp, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)

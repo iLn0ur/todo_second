@@ -8,6 +8,7 @@ import UserProjectList from './components/userProjects.js';
 import axios from 'axios'
 import LoginForm from './components/auth.js'
 import Cookies from 'universal-cookie';
+import ProjectForm from './components/ProjectForm.js'
 
 
 
@@ -89,6 +90,27 @@ class App extends React.Component {
             this.get_token_from_storage()
         }
 
+    deleteProject(id) {
+        console.log(id)
+        const headers = this.get_headers()
+        axios.delete("http://127.0.0.1:8000/api/users/"+id+"/", {headers, headers})
+            .then(response => {
+                this.setState({projects: this.state.projects.filter((item)=>item.id !== id)})
+            }).catch(error => console.log(error))
+    }
+
+    createBook(name, user_access) {
+        const headers = this.get_headers()
+        const data = {name: name, user_access: user_access}
+        axios.post("http://127.0.0.1:8000/api/projects", data, {headers, headers})
+            .then(response => {
+                let new_project = response.data
+                const user_access = this.state.user.filter((item) => item.id === new_project.user)[0]
+                new_project.user_access = user_access
+                this.setState({projects: [...this.state.projects, new_project]})
+            }).catch(error => console.log(error))
+    }
+
     render () {
         return (
             <div className='App'>
@@ -111,7 +133,11 @@ class App extends React.Component {
                     <Routes>
 
                         <Route exact path='/' element={ <UserList users={this.state.users} />} />
-                        <Route exact path='/projects' element={ <ProjectList projects={this.state.projects} />} />
+                        <Route exact path='/projects/create' element={ <ProjectForm
+                            users={this.state.users} createProject={(name, user) => this.createBook(name,
+                                    user)} /> } />
+                        <Route exact path='/projects' element={ <ProjectList projects={this.state.projects}
+                            deleteProject={(id)=>this.deleteProject(id)}/>} />
                         <Route path="/users" element={<Navigate replace to="/" />} />
                         <Route exact path='/login' element={<LoginForm
                             get_token={(username, password) => this.get_token(username, password)} />} />
