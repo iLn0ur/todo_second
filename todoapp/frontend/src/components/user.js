@@ -7,10 +7,10 @@ const UserItem = ({user}) => {
         <tbody>
             <tr>
                 <td>
-                    {user.url}
+                    {user.id}
                 </td>
                 <td>
-                    <Link to ={`user/${user.url.split('/')[5]}`}>{user.name}</Link>
+                    {user.name}
                 </td>
                 <td>
                     {user.birthday_year}

@@ -2,7 +2,7 @@ from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializ
 from .models import UserApp, ProjectToDo, ToDo
 
 
-class UserModelSerializer(HyperlinkedModelSerializer):
+class UserModelSerializer(ModelSerializer):
     class Meta:
         model = UserApp
         fields = '__all__'
@@ -15,14 +15,14 @@ class UserModelSerializer(HyperlinkedModelSerializer):
 #         fields = ('name', 'birthday_year')
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
     class Meta:
         model = ProjectToDo
         fields = '__all__'
         ordering = ['id']
 
 
-class ToDoModelSerializer(HyperlinkedModelSerializer):
+class ToDoModelSerializer(ModelSerializer):
     class Meta:
         model = ToDo
         fields = '__all__'
